@@ -1,0 +1,17 @@
+# the nodejs build already includes building its dependencies like v8, openssl, and statically links them.
+# however the public binaries are built against newer glibc than centos 7 has, which is something we need.
+# the build will take several hours.
+VERSION ?= 18.13.0
+NAME = node
+SOURCE = https://nodejs.org/dist/v${NODE_VERSION}/node-v${VERSION}.tar.gz
+
+include $(shell git rev-parse --show-toplevel)/pkgs/build.mk
+
+configure:
+	./configure --prefix=/
+
+build:
+	$(MAKE)
+
+install:
+	$(MAKE) DESTDIR=$(DESTDIR) install
