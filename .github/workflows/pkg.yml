@@ -21,7 +21,7 @@ jobs:
           - os: ubuntu-18.04
             # To ensure binaries built are compatible with Block's Kochiku worker environment
             container: centos:centos7
-          - os: macos-12
+          #- os: macos-12
     steps:
       - name: Install required dependencies on CentOS
         if: startsWith(matrix.container, 'centos')
